@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  server:
+    # relative path to the directory of Dockerfile
+    build: ./server  # enter relative path to the server directory
+    container_name: api_c 
+    ports:
+      - '5000:4000'
+    volumes:
+      - ./server:/app
+      - ./app/node_modules
