@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  client:
+    # relative path to the directory of Dockerfile (project directory)
+    build: ./client
+    container_name: client_c
+    ports:
+      - '4000:3000'
+    volumes:
+      # adjust `./client` to the directory of your project
+      - ./client:/app
+      - ./app/node_modules
+    stdin_open: true
+    tty: true
