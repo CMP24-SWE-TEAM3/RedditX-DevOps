@@ -45,3 +45,5 @@ const sendEmail = (email, type, url) => {
         });
     });
 }
+
+exports.sendEmail = sendEmail;
