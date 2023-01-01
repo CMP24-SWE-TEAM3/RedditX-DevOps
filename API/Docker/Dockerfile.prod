@@ -1,0 +1,22 @@
+FROM node:lts-alpine
+
+WORKDIR /app
+
+# Cache packages
+COPY package.json .
+
+COPY package-lock.json .
+
+# Install dependency tools
+RUN apk add --update --no-cache python3 build-base gcc && ln -sf /usr/bin/python3 /usr/bin/python
+
+# Upgrade npm version to be compatiable with used packages
+RUN npm install -g npm@9.2.0
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["node", "server.js"]
