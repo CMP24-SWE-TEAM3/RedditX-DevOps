@@ -1,0 +1,35 @@
+*   git config --global user.name,email "username,email"    =>  set username, email lobally
+
+*   git init            =>  initialize repo
+
+*   git clone "url"     =>  clone a repo
+
+*   git add "filename"  =>  add file to staging area
+
+*   git commit -m "msg" =>  snapshots the file permanently in the version history
+
+*   git commit -a       =>  commits any staged files (with git add) and any changed files
+
+*   git rm "filename"   =>  delete file from working directory
+
+*   git show "commit_id"    =>  meta data and changed files of this commit
+
+*   git remote add "variable_name" "remote_server_link"     =>  connect local repo to remote server
+
+*   git push origin:"branch_name"       =>      delete branch on remote repo
+
+*   git pull "repo_link"                =>      fetches changes on remote server to working directory
+
+*   git branch                          =>      list all local branches in current repo
+
+*   git branch "branch_name"            =>      create new branch
+
+*   git branch -d "branch_name"         =>      delete branch
+
+*   git checkout "branch_name"          =>      switch to another branch
+
+*   git checkout -b "branch_name"       =>      create new branch and switch to it
+
+*   git merge "branch_name"             =>      merge specified branch history into current brnch
+
+*   git rebase "branch_name"            =>      move all work from current branch to master branch

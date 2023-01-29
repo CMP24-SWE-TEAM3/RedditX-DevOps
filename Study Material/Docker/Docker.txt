@@ -1,0 +1,61 @@
+//  pull docker image from dockerhub
+docker pull "image_name":"tag (optional)"
+*   tags    =>      version 
+
+//  build an image
+docker build -t myapp:"tag (optional)" .
+
+//  list all images
+docker images
+
+//  run container
+docker run --name "give_container_name" -p "port_we_want_to_map_to_the_container_on_the_machine":"port_exposed_by_container" -d "image_name"||"image_id"::"tag (optional)"
+*   -d      =>  run in detached mode (terminal is detached from the process)
+*   --rm    =>  auto delete the container when stopped (before container name)
+*   -v "absolute_path_to_/l_5":/app         =>      map /l_5 directory in the machine to the /app directory in the container to listen for files changes (volume)
+*   -v /app/node_modules                    =>      doesn't map this folder to another location in the machine like first volume instead, it's mapped to directory managed by docker somewhere on the machine
+*   both volumes can be used together
+
+//  list of running containers
+docker ps
+*   -a      =>  list all (running and stopped containers)
+
+//  stop a container
+docker stop "container_name"||"container_id"
+
+//  resume a stopped container
+docker start "container_name"||"container_id"
+*   -i      =>  interactive mode (Attach container's STDIN to the terminal)
+//  delete image (must be no container running from this image)
+docker image rm "image_name"
+*   -f      =>  force
+
+//  delete container
+docker container rm "container_name"
+
+//  remove all images, containers, volumes
+docker system prune -a
+
+//  run the docker-compose.yaml file    =>  build an image and run a container of it
+docker-compose up (in the directory of docker-compose.yaml file)
+
+//  stop and remove the container, but image and volumes still remain
+docker-compose down
+*   --rmi       =>      remove images used by services
+*   -v          =>      remove named volumes declared in the volumes section of the Compose file and anonymous volumes attached to containers
+
+//  build docker image to publish on dockerhub
+docker build -t "dockerhub_username"/"app_name" .
+
+//  login to dockerhub locally
+docker login
+
+//  push image to dockerhub
+docker push "dockerhub_username"/"app_name"
+
+//  open terminal on container
+docker exec -it "container_name" bash
+*   bash can be replaced with any other command
+
+//  show logs of container
+docker logs "container_name"

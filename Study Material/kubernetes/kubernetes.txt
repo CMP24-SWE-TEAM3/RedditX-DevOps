@@ -1,0 +1,227 @@
+#   definition
+---------------
+*   open source container orchestration tool
+*   manage containerized applications in different (physical, virtual, cloud, hypered) deployment environments
+
+*   trend from Monolith to Microservices increase usage of containers
+*   proper way of managing those 100s of containers
+
+#   features
+--------------
+*   high availability   =>  no downtime (always accessible by the users)
+
+*   scalability         =>  high performance (loads fast and users have high response rate)
+
+*   disaster recovery   =>  backup & restore
+
+#   components
+---------------
+$   node        =>      simple server (physical or vertual)
+
+$   pod         =>      the smallest unit of kubernetes
+*   abstraction over container
+*   creates this running environment or a layer on top of the container
+*   kubernetes wants to abstract away the container technologies so that you can replace them if you want
+*   we don't have to directly work with docker
+*   usually 1 application per pod
+*   each pod gets its own IP address (internal)
+*   ephemeral (can die very easily and new one will get created in its place), then a new IP address is assigned to it
+
+$   service     =>      permanent (static) IP address attached to pod
+*   lifecycle of Pod and Service Not connected
+*   external service    =>  service opens communication from external resources
+*   internal service    =>  do not allow communication from external resources
+
+$   Ingress     =>      the request goes first to Ingress and it does the forwarding then to the service
+
+$   ConfigMap   =>      external configuration to the application (DB_URI)
+*   used via environment variables
+
+$   Secret      =>      used to store secret data in base64 (DB username, DB password)
+*   
+
+#   K8S doesn'y manage data persistance
+*   if DB container or pod restarted, the data would be gone
+$   Volumes     =>      attaches a physical storage on a hard drive to the pod
+*   storage on local machine    =>  on the same server node where the pod is running
+*   storage on remote machine   =>  outside of K8S cluster (cloud storage, own machine)
+
+$   Deployment      =>      blueprint for my-app pods (to create multiple replicas of it)
+*   abstraction on top of Pods
+*   used to replicate stateLESS apps
+
+*   DB can't be replicated via Deployment (inconsistence)
+$   Stateful        =>      used to replicate stateFUL apps like DB
+
+*   DB are often hosted outside of K8S cluster      =>      because replicating them are not easy like deployment
+
+#   architecture
+-----------------
+
+*   nodes have 2 types: master & slave
+*   3 processes must be installed on every node 
+    
+    1)  container runtime (Docker)
+    
+    2)  kubelet     =>      the process that schedules the pods and containers
+    *   has interface with both container & node
+    *   starts a pod with a container inside
+    *   assigns resources from node to container (CPU, RAM, storage)
+
+#   usually, K8S cluster is made up of multiple nodes
+    
+    3)  kube-proxy  =>      responsible for forwarding requests from services to pods
+    *   works in performant way with low overhead
+    *   ex: my-app replica make a request to the DB, instead of service randomly forwarding it to any replica, it forwards it to the DB replica running on the same node (avoid network overhead)
+
+#   master node     =>      manage proccesses of slave nodes
+*   has less load   =>      has less resources
+
+    1)  API Server  =>      cluster gateway, gets initial request of any updates into the cluster or queries from cluster
+    *   acts as a gatekeeper for authentication
+    *   main entry point to K8S cluster
+    
+    2)  scheduler   =>      where to put the new pod
+    
+    3)  controller manager      =>      detects state changes like pods crashing
+    
+    4)  etcd        =>      key/value store of cluster state
+
+
+#   minikube        =>      one node cluster where all master & worker processes run on ONE node (machine) has docker pre-installed
+*   run locally through virtual box
+*   used for testing purposes
+
+#   kubectl     =>      CLI tool to interact with minikube, cloud, hybrid clusters
+
+
+#   kubectl commands
+-----------------------
+
+*   kubectl create deployment nginx-depl --image=nginx
+
+*   kubectl get (nodes, pod, services, deployment, replicaset, namespace)
+*   -o wide     =>      show more information
+*   -n "NS_name"    =>  of specific namespace
+
+*   pod_name = deployment_name + replicaset_id + own_id
+
+*   kubectl edit deployment nginx-depl      =>      auto-generated configuration file with default values to the deployment
+
+*   kubectl logs "pod_name"                  =>      show info about pod
+
+*   kubectl describe pod "pod_name"          =>      show more info about pod
+
+*   kubectl exec -it "pod_name" -- bin/bash =>  get an interactive terminal of the application container
+
+*   exit    =>      to exit
+
+*   kubectl delete deployment "deployment_name"     =>  delete deployemnt, pods and replicaset
+
+*   kubectl apply -f "config-file.yaml"
+
+#   configuration file parts
+-----------------------------
+
+    1)  meta-data   {name, labels}
+    
+    2)  specifications      =>      all configurations for that component
+    
+    3)  status              =>      automatically generated and added by K8S
+    *   K8S compare between current and desired status to achieve it
+    *   it stores the current status in /etcd
+
+
+*   minikube service "external-service-name"        =>      assign external IP address
+
+#   Namespaces
+---------------
+*   organise resources
+
+*   virtual cluster inside K8S cluster
+
+*   4 default namespaces
+    1)  kubernetes-dashboard    =>      shipped automatically with minicube
+        -   specific to minicube installation (not exist in a standard cluster)
+    2)  kube-system             =>      not meant for developer use
+        -   contains the system processes from master managing processes or cubectl, etc..
+    3)  kube-public             =>      contains publicly accessible data (configMap)
+        $   kubectl cluster-info
+    4)  kube-node-lease         =>      contains info about heartbeats of nodes
+        -   provide each node with its own availability object
+    5)  default                 =>      contains your resources created if no namespace specified to it
+    
+$   kubectl create namespace "namespace_name"
+
+*   each namespace must define its own configMap, secret
+
+*   services can be shared between NS
+
+*   some components can't be created inside NS (volume, node) 
+    
+    $   kubectl api-resources --namespaced=false
+    
+    $   kubectl apply -f "filename.yaml" --namespace="NS_name"
+    
+#   kubectx     =>      tool used to manage namespaces
+    $   kubens              =>  list all namespaces
+    $   kubens "NS_name"    =>  switch default namespaces
+
+$   minikube addons enable ingress      =>      automatically starts the K8S Nginx implementation of Ingress Controller
+
+#   Helm
+---------
+
+*   Charts.yaml     =>      contain all metadata about the chart (name, version, dependencies)
+
+*   values.yaml     =>      where values are placed for the template files (default values)
+
+*   charts/         =>      contains charts which this one depends on
+
+*   templates/      =>      contains template files
+
+$   helm install "chart-name"       =>      deploy the chart
+
+$   helm install --values=my-values.yaml "chart-name"
+
+$   helm install --set "key"="value"
+
+$   helm upgrade "chart-name"
+
+$   helm rollback "chart-name"
+
+#   Volumes
+------------
+
+*   persistent volume   =>  cluster resource like RAM, CPU used to store data
+    *   abstract component  =>  it takes storage from actual physical storage (local hard drive from cluster nodes, external nfs server outside cluster, cloud storage)
+    *   not namespaced  =>  accessible to the whole cluster from any namespace
+
+*   local volumes
+    =>  tied to 1 specific node, but rather to each node equally (because we don't know where the new pod will start)
+    =>  not surviving in cluster crashes
+*   that's why we should use remote volumes (almost always)
+
+
+*   persistent volume claim     =>      pods access storage by using claim as a volume
+    , claim tries to find a volume in cluster that satisfies the claim, and the volume has actual storage backend that it will create this storage resource from
+    *   must exist in the same namespace as the pod
+    
+    *   once the pod finds the matching persistent volume through the persistent volume claim   =>  the volume is then mounted into the pod =>  then this volume can be mounted into the container inside this pod
+    
+    *   if the pod have multiple containers =>  we can decide to mount the volume in all of them or some
+
+*   storage class       =>      creates (provisions) persistent volumes dynamically whenever PVC claims it
+    *   storage backend is defined in the SC via provisioner attribute
+
+
+
+
+
+
+
+
+
+
+
+

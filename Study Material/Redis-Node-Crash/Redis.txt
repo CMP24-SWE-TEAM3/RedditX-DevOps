@@ -1,0 +1,78 @@
+*   redis-server        =>      start DB server
+
+*   redis-cli           =>      open interactive terminal to the DB
+
+*   quit
+
+*   clear
+
+*   SET "key" "value"
+
+*   GET "key"
+
+*   DEL "key"
+
+#   all data stored as string
+
+*   EXISTS "key"
+
+*   KEYS "pattern"
+
+*   flushall
+
+*   ttl "key"       =>      show expiration seconds
+#   -1              =>      default (not expiring)
+#   -2              =>      expired
+
+*   EXPIRE "key" "seconds"
+
+*   SETEX "key" "seconds" "value"
+
+*   LPUSH "array" "element"     =>      push from left (start)
+
+*   RPUSH "array" "element"     =>      push from right (end)
+
+*   LPOP "array" "element"      =>      pop from left (start) and return the value
+
+*   RPOP "array" "element"      =>      pop from right (end) and return the value
+
+*   LRANGE "array" "start" "end"        =>      display array
+#   from 0 to -1                =>      the whole array
+
+*   SADD "set" "element"
+
+*   SMEMBERS "set"              =>      get elements of set
+
+*   SREM "set" "element"
+
+#   no nesting in hashes
+
+*   HSET "hash" "key" "value"
+
+*   HGET "hash" "key"
+
+*   HGETALL "hash"
+
+*   HDEL "hash" "key"
+
+*   HEXISTS "hash" "key"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

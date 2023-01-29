@@ -1,0 +1,51 @@
+
+#   Filter Table:
+    *   INPUT CHAIN
+    *   OUTPUT CHAIN
+    *   FORWARD CHAIN
+    
+#   NAT Table:
+    *   INPUT CHAIN
+    *   PREROUTING CHAIN
+    *   POSTROUTING CHAIN
+    
+#   Mangle Table:
+    *   INPUT CHAIN         //  incoming packets
+    *   OUTPUT CHAIN        //  outgoing packets
+    *   FORWARD CHAIN       //  forwarded packets from my server to another
+    *   PREROUTING CHAIN    //  before packet is recieved
+    *   POSTROUTING CHAIN   //  before packet is sent
+    
+
+##  TARGET          =>      what you need to do with the rule { ACCEPT, REJECT, DROP }
+
+##  COMMANDS:
+--------------
+--------------
+
+*   iptables -F     =>  flush (delete) all rules
+
+*   iptables -L     =>  list all rules in selected chain  (if no selected -> all chains) of the selected table (filter by default)
+*   --line-numbers  =>  number rules
+
+*   iptables --policy INPUT(CHAIN_NAME) ACCEPT (TARGET)     =>  set default policy for chain
+
+*   rules are checked sequentially from top to bottom
+
+*   -I              =>  insert rule (at top)
+
+*   -A              =>  append rule (at bottom)
+
+*   iptables -I (priority) INPUT (chain) -s 10.0.0.1 (source) -j DROP (target)
+*   source may be subnetted         =>  10.0.0.1/24
+
+*   iptables -D INPUT (chain) 1 (number)    =>  delete rule from chain
+
+*   iptables -I INPUT -p tcp (protocol) --dport 80 (detenation port) -j DROP
+
+*   /sbin/iptables-save             =>  save current rules
+
+*   iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 8080       =>      redirect requests from port 80 to 8080
+
+*   iptables -t nat -A PREROUTING -p tcp --destination "server-ip" --dport "server-port" -j DNAT --to-destination "dest-ip:dest-port"
+*   iptables -t nat -A POSTROUTING -p tcp --destination "dest-ip" --dport "dest-port" -j SNAT --to-source "src-ip:src-port

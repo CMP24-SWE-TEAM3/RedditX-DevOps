@@ -1,0 +1,81 @@
+*   sudo useradd "username"
+*   sudo passwd "username"
+*   sudo userdel "username"
+*   sudo groupadd "group_name"
+*   sudo groupdel "group_name"
+
+*   vi "file_name"
+*   i       =>  start typing (insert mode)
+*   esc     =>  out from insert mode
+*   :wq     =>  write changes to file and quit
+
+*   grep "search_string" "file_name"
+*   -v      =>  reverse (return non-matching)
+*   -c      =>  count matching lines
+
+*   sort "filename"
+*   -r      =>  reverse
+*   -f      =>  insensitive
+*   -n      =>  compare according to string numerical value
+
+*   chown "username" "filename"
+
+*   chmod "permissions (from 000 to 777)" "filename"
+
+*   lsof    =>  list opened files
+*   -u "username"
+
+*   id "flag" "username"
+*   -g      =>  effective group ID
+*   -G      =>  all groups IDs
+*   -n      =>  names of groups instead of IDs
+*   -r      =>  real IDs of groups instead of effective IDs
+*   -u      =>  effective user ID
+
+*   tar "flag" "filename" "source-foldername"
+*   -cvf    =>  zip
+*   -xvf    =>  unzip
+
+*   cut "flags" "filename"
+*   -c1-2   =>  display only first 2 columns of file
+
+*   sed 's/"pattern"/"replacement"/' "filename"     =>  replace pattern but not update the file
+
+*   unique "filename"   =>  remove duplicates from file
+
+*   watch "flag" "cmd"
+*   -d      =>  heighlight differences
+
+*   history             =>  show history of commands
+*   "n"     =>  last n commands
+
+*   dd      =>  copy and formate a file
+*   if="input_file_path"
+*   of="output_file_path"
+
+*   free    =>  memory details
+*   -b, -k, -m, -g      =>  units
+
+*   ssh-keygen          =>  generate authentecation key
+*   -t rsa  =>  encryption type
+
+*   netstat             =>  network connections, routing tables
+
+*   nslookup "domain"           =>  data about domain
+
+*   curl "options" "url"        =>  download
+
+*   awk                         =>  programming language
+
+*   tr          =>  translate (transform a pattern)
+
+*   env         =>  environment variable
+
+*   iptables    =>  dealing with firewall
+*   service iptables stop   =>  disable firewall
+
+*   df          =>  display disk usage from file system
+
+*   du          =>  files memory usage
+
+

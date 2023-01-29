@@ -1,0 +1,70 @@
+*   /bin            =>  important executable programs + core OS commands
+*   in modern distro it's symbolically linked to /usr/bin
+
+*   /boot           =>  files needed by the bootloader + initial ram files + kernel
+
+*   /dev            =>  device files, dynamically created based on physical & virtual devices connected to the system
+
+*   /etc            =>  critical configuration files and startup scripts
+
+*   /home           =>  location of indevidual users home directories
+*   /home/"username"    =>  contains configuration files specific to the user (.bashrc)
+
+*   /lib            =>  shared libraries the system programs need
+*   enable multiple programs to share code with each other
+*   lib, lib32, lib64, libx32
+*   symbolically linked to /usr/lib
+
+*   /lost + /found  =>  chunks of broken files reside after a system crash
+
+*   /media          =>  the mount point for filesystems stored on removable media
+*   /media/"username"       =>  all connected removable media of the user
+
+*   /mnt            =>  where you mount devices temporarily
+
+*   /opt            =>  optional SW packages
+
+#   pseudo filesystem       =>  created at startup and disappear at shutdown
+
+*   /proc           =>  pseudo filesystem, info about every running process on the machine
+*   contains a lot of info about the system
+*   each active process has its own subdirectory
+
+*   /root           =>  the home directory of the root user
+
+*   /run            =>  contains info describing the system since boot time (who is logged in, what demons might be running)
+
+*   /sbin           =>  system essential files similar to the bin dir.
+*   programs in sbin were statically linked and thus had rewer library dependencies
+*   in modern distro it's symbolically linked to /usr/sbin
+
+*   /srv            =>  used as a folder for files served by a web server or other server mechanism (ftp)
+
+*   /sys            =>  info about devices, drivers, kernel features running on the system
+*   like /proc but better structured
+*   used with /proc in system admin to pull info about the system
+
+*   /tmp            =>  directory for temporary files
+*   used to store things we don't intend to keep beyond the next reboot
+
+*   /usr            =>  contains most of the programs and utilities the system will run
+*   shared between al users and readonly except for the root
+
+*   /var            =>  the system specific variable files (logs, temporary message files, spool files)
+*   web servers place their files here      =>  /var/www    -->>    apache
+
+##  man hier        =>  more info about filesystem
+
+
+
+
+
+
+
+
+
+
+
+
+
+

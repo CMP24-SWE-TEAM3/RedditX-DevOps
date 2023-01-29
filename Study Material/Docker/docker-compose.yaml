@@ -1,0 +1,33 @@
+version: '3.8'    # version of docker compose we are using
+# tell docker how to build the image for this service, how to run the container for it
+# services  =>  the projects that we want images and containers for
+services:
+# not neccessary to have the same name
+  api:
+    build: ../../var/lib/jenkins/workspace/Reddit-API
+    container_name: api_container
+    ports:
+      - '3000:8000'
+  
+  front:
+    build: ../../var/lib/jenkins/workspace/Reddit-Client
+    container_name: client_container
+    ports:
+      - '4000:80'
+      
+  cross:
+    build: ../../var/lib/jenkins/workspace/Reddit-Cross
+    container_name: cross_container
+    ports:
+      - '5000:80'
+      
+  database:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_db:/data/db
+
