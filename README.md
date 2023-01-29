@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-<h1 align='center'>Devops - Reddit Clone/h1>
+<h1 align='center'>Devops - Reddit Clone</h1>
 <p>A devops project for the web and mobile application, Reddit clone</p>
 </div>
 
