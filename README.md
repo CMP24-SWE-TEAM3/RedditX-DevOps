@@ -7,21 +7,15 @@
 <p>A devops project for the web and mobile application, Reddit clone</p>
 </div>
 
-<div align="center">
-[![GitHub contributors](https://img.shields.io/github/contributors/CMP24-SWE-TEAM3/DevOps)](https://github.com/CMP24-SWE-TEAM3/DevOps/contributors)
-[![GitHub forks](https://img.shields.io/github/forks/CMP24-SWE-TEAM3/DevOps)](https://github.com/CMP24-SWE-TEAM3/DevOps/network)
-[![GitHub stars](https://img.shields.io/github/stars/CMP24-SWE-TEAM3/DevOps)](https://github.com/CMP24-SWE-TEAM3/DevOps/stargazers)
-</div>
-
 <details open="open">
 <summary>
 <h2 style="display:inline">📝 Table of Contents</h2>
 </summary>
 
 - [Built With](#BuiltWith)
-- [Demo](#demo)
-- [Getting started](#getting-started)
-- [Contributors](#contributors)
+- [Demo](#Demo)
+- [Getting started](#GettingStarted)
+- [Contributors](#Contributors)
 
 </details>
 
@@ -45,11 +39,11 @@
 - [Prometheus](https://prometheus.io/)
 - [Grafana](https://grafana.com/)
 
-## 🎥 Demo
+<h2 id="Demo">🎥 Demo</h2>
 
-https://rr4---sn-hgn7rn7k.c.drive.google.com/videoplayback?expire=1675001889&ei=4UfWY7zIGYbBgwObzZuIBw&ip=197.52.12.76&cp=QVRMV0FfUFhWSlhPOnRSVTcxTTR6czBrcGNXUllzaXZNaXdONFl1UW9aWmk5amx5amJKLTkxVkk&id=3ac5522fcc63b5cc&itag=22&source=webdrive&requiressl=yes&mh=Tl&mm=32&mn=sn-hgn7rn7k&ms=su&mv=m&mvi=4&pl=20&sc=yes&ttl=transient&susc=dr&driveid=12PHgl5Lv_86tFptlOQR3JAKQFiTTfggM&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=126.571&lmt=1674987376047945&mt=1674987192&subapp=DRIVE_WEB_FILE_VIEWER&txp=0016224&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRQIhAKtCjrVQgIs8_NZt0vVSuigTQwN0SCMtT51NnyKpFmI-AiAYvmU5EgwYtdtyaIIALnQ_Lo-DcU70iNQ9muqmjTWiSA==&lsparams=mh,mm,mn,ms,mv,mvi,pl,sc&lsig=AG3C_xAwRQIgURibO4wpxnPsTuVKIAzxiXaisfErQcMcyfKKkJwLlhECIQDuA8YgkJSI3ousaljg9aqXPRwRErOfXOjSeuK6G9MeLQ==&cpn=c_OQ7F2XqF8d0gQj&c=WEB_EMBEDDED_PLAYER&cver=1.20230111.01.00
 
-## 🏁 Getting started
+
+<h2 id="GettingStarted">🏁 Getting started</h2>
 
 1. **_Login to the host server_**
 
@@ -69,7 +63,8 @@ $ cd /home/user_name
 $ docker-compose up
 ```
 
-## Contributor
+<h2 id="Contributors">Contributors</h2>
+
 <a href="https://github.com/waleedhesham446" target="_blank">
 <img src="https://avatars.githubusercontent.com/u/72695729?v=4" width="150px;" alt="Waleed Hesham"/>
 <br/>
